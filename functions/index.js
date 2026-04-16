@@ -6,7 +6,7 @@ import { getSettingsKeys, parseSettings } from './lib/settings-parser';
 import { renderHorizontalMenu, renderVerticalMenu } from './lib/menu-renderer';
 import { renderSiteCards, renderEmptyState } from './lib/card-renderer';
 
-// 模板内容在 isolate 生命周期内不变（部署会替换 isolate），缓存避免每次 MISS 重复 ASSETS.fetch
+// 模板内容在 Worker 运行时实例生命周期内不变（部署会替换实例），缓存避免每次 MISS 重复 ASSETS.fetch
 let cachedTemplateHtml = null;
 async function getTemplateHtml(env, requestUrl) {
   if (cachedTemplateHtml !== null) return cachedTemplateHtml;
